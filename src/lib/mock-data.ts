@@ -182,3 +182,109 @@ export const esposizioniGeografiche: EsposizioneGeografica[] = [
         nome: "Vanguard FTSE All-World UCITS ETF",
         ticker: "VWCE",
         pesoPortafoglio: 18,
+        aziendePrincipali: [
+          { nome: "ASML", peso: 2.1 },
+          { nome: "LVMH", peso: 1.4 },
+          { nome: "Nestlé", peso: 1.2 },
+        ],
+      },
+      {
+        nome: "iShares Core MSCI Europe",
+        ticker: "IMEA",
+        pesoPortafoglio: 6,
+        aziendePrincipali: [
+          { nome: "SAP", peso: 2.8 },
+          { nome: "Novo Nordisk", peso: 2.5 },
+        ],
+      },
+    ],
+  },
+  {
+    id: "asia",
+    paese: "Asia",
+    bandiera: "🌏",
+    percentuale: 12,
+    regioniMappa: [{ cx: 74, cy: 20, rx: 11, ry: 9 }],
+    spiegazione:
+      "L'esposizione asiatica deriva principalmente dalla quota di Giappone e Cina inclusa nell'ETF globale VWCE.",
+    etf: [
+      {
+        nome: "Vanguard FTSE All-World UCITS ETF",
+        ticker: "VWCE",
+        pesoPortafoglio: 12,
+        aziendePrincipali: [
+          { nome: "Toyota", peso: 1.1 },
+          { nome: "Tencent", peso: 0.9 },
+          { nome: "Samsung Electronics", peso: 0.8 },
+        ],
+      },
+    ],
+  },
+  {
+    id: "mercati-emergenti",
+    paese: "Mercati Emergenti",
+    bandiera: "🌎",
+    percentuale: 6,
+    regioniMappa: [
+      { cx: 30, cy: 38, rx: 5, ry: 7 },
+      { cx: 52, cy: 35, rx: 6, ry: 8 },
+      { cx: 80, cy: 33, rx: 5, ry: 5 },
+    ],
+    spiegazione:
+      "Una piccola quota è dedicata ai mercati emergenti tramite un ETF specifico, per aumentare la diversificazione del portafoglio.",
+    etf: [
+      {
+        nome: "iShares Core MSCI EM IMI",
+        ticker: "EMIM",
+        pesoPortafoglio: 6,
+        aziendePrincipali: [
+          { nome: "Taiwan Semiconductor", peso: 1.6 },
+          { nome: "Alibaba", peso: 0.7 },
+          { nome: "Reliance Industries", peso: 0.5 },
+        ],
+      },
+    ],
+  },
+];
+
+export type Obiettivo = {
+  id: string;
+  titolo: string;
+  descrizione: string;
+  target: number;
+  attuale: number;
+  scadenza: string;
+};
+
+export const obiettivi: Obiettivo[] = [
+  {
+    id: "pensione",
+    titolo: "Fondo pensione integrativo",
+    descrizione: "Rendita serena dal 2045",
+    target: 300_000,
+    attuale: 184_500,
+    scadenza: "2045",
+  },
+  {
+    id: "casa-toscana",
+    titolo: "Casa in Toscana",
+    descrizione: "Seconda casa per la famiglia",
+    target: 250_000,
+    attuale: 97_500,
+    scadenza: "2029",
+  },
+];
+
+export type VoceNavigazione = {
+  id: string;
+  etichetta: string;
+  href: string;
+};
+
+export const navigazione: VoceNavigazione[] = [
+  { id: "home", etichetta: "Home", href: "/" },
+  { id: "analisi", etichetta: "Analisi", href: "/analisi" },
+  { id: "mappa", etichetta: "Mappa", href: "/mappa" },
+  { id: "futuro", etichetta: "Futuro", href: "/futuro" },
+  { id: "profilo", etichetta: "Profilo", href: "/profilo" },
+];
