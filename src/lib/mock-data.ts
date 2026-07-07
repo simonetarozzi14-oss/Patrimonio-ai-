@@ -76,12 +76,25 @@ function generaSerieStoricaPatrimonio(): PuntoStorico[] {
 export const serieStoricaPatrimonio = generaSerieStoricaPatrimonio();
 
 export const patrimonioScore = {
-  punteggio: 78,
+  punteggio: 87,
   scoreMassimo: 100,
-  livello: "Solido",
-  descrizione: "Diversificazione buona, liquidità nella norma.",
-  variazione: "+3 punti questo mese",
+  stato: "In crescita 🌱",
+  variazione: "+2 punti rispetto al mese scorso",
 };
+
+export type IndicatoreScore = {
+  id: string;
+  etichetta: string;
+  valore: number;
+};
+
+export const indicatoriScore: IndicatoreScore[] = [
+  { id: "diversificazione", etichetta: "Diversificazione", valore: 82 },
+  { id: "liquidita", etichetta: "Liquidità", valore: 64 },
+  { id: "crescita", etichetta: "Crescita", valore: 91 },
+  { id: "costanza", etichetta: "Costanza", valore: 73 },
+  { id: "equilibrio", etichetta: "Equilibrio", valore: 88 },
+];
 
 export type QuotaComposizione = {
   categoria: string;
