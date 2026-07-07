@@ -110,56 +110,75 @@ export const composizionePatrimonio: QuotaComposizione[] = [
   { categoria: "Altro", percentuale: 5, colore: "#c9cfc4" },
 ];
 
-export type PresenzaGeografica = {
-  luogo: string;
+// --- Distribuzione geografica del patrimonio ---
+// Struttura pensata per le evoluzioni future: da "Dove sono i tuoi soldi"
+// l'utente potrà in seguito selezionare un Paese, vedere gli ETF che vi
+// investono, le aziende principali contenute in quegli ETF e una
+// spiegazione in linguaggio semplice del perché è investito lì.
+
+export type AziendaEtf = {
+  nome: string;
+  peso: number; // peso percentuale dell'azienda dentro l'ETF
+};
+
+export type EtfEsposizione = {
+  nome: string;
+  ticker: string;
+  pesoPortafoglio: number; // quanto pesa questo ETF sul totale investito
+  aziendePrincipali: AziendaEtf[];
+};
+
+export type RegioneMappa = {
+  cx: number; // posizione in % sulla mappa stilizzata (viewBox 0-100)
+  cy: number;
+  rx: number; // raggio orizzontale della "macchia" del continente
+  ry: number;
+};
+
+export type EsposizioneGeografica = {
+  id: string;
+  paese: string;
+  bandiera: string;
   percentuale: number;
-  coordinate: { x: number; y: number }; // posizione in % su mappa stilizzata
+  regioniMappa: RegioneMappa[];
+  spiegazione: string;
+  etf: EtfEsposizione[];
 };
 
-export const presenzaGeografica: PresenzaGeografica[] = [
-  { luogo: "Europa", percentuale: 54, coordinate: { x: 49, y: 32 } },
-  { luogo: "Nord America", percentuale: 29, coordinate: { x: 22, y: 36 } },
-  { luogo: "Asia", percentuale: 17, coordinate: { x: 74, y: 40 } },
-];
-
-export type Obiettivo = {
-  id: string;
-  titolo: string;
-  descrizione: string;
-  target: number;
-  attuale: number;
-  scadenza: string;
-};
-
-export const obiettivi: Obiettivo[] = [
+export const esposizioniGeografiche: EsposizioneGeografica[] = [
   {
-    id: "pensione",
-    titolo: "Fondo pensione integrativo",
-    descrizione: "Rendita serena dal 2045",
-    target: 300_000,
-    attuale: 184_500,
-    scadenza: "2045",
+    id: "stati-uniti",
+    paese: "Stati Uniti",
+    bandiera: "🇺🇸",
+    percentuale: 58,
+    regioniMappa: [{ cx: 20, cy: 20, rx: 13, ry: 9 }],
+    spiegazione:
+      "Sei investito negli Stati Uniti principalmente perché possiedi un ETF globale (VWCE), che riflette la composizione del mercato azionario mondiale.",
+    etf: [
+      {
+        nome: "Vanguard FTSE All-World UCITS ETF",
+        ticker: "VWCE",
+        pesoPortafoglio: 72,
+        aziendePrincipali: [
+          { nome: "Apple", peso: 4.2 },
+          { nome: "Microsoft", peso: 3.9 },
+          { nome: "Nvidia", peso: 3.4 },
+          { nome: "Amazon", peso: 2.1 },
+          { nome: "Alphabet", peso: 1.8 },
+        ],
+      },
+    ],
   },
   {
-    id: "casa-toscana",
-    titolo: "Casa in Toscana",
-    descrizione: "Seconda casa per la famiglia",
-    target: 250_000,
-    attuale: 97_500,
-    scadenza: "2029",
-  },
-];
-
-export type VoceNavigazione = {
-  id: string;
-  etichetta: string;
-  href: string;
-};
-
-export const navigazione: VoceNavigazione[] = [
-  { id: "home", etichetta: "Home", href: "/" },
-  { id: "analisi", etichetta: "Analisi", href: "/analisi" },
-  { id: "mappa", etichetta: "Mappa", href: "/mappa" },
-  { id: "futuro", etichetta: "Futuro", href: "/futuro" },
-  { id: "profilo", etichetta: "Profilo", href: "/profilo" },
-];
+    id: "europa",
+    paese: "Europa",
+    bandiera: "🇪🇺",
+    percentuale: 24,
+    regioniMappa: [{ cx: 48, cy: 17, rx: 6, ry: 7 }],
+    spiegazione:
+      "L'esposizione europea arriva sia dall'ETF globale VWCE sia da un fondo dedicato alle azioni europee presente nel tuo portafoglio.",
+    etf: [
+      {
+        nome: "Vanguard FTSE All-World UCITS ETF",
+        ticker: "VWCE",
+        pesoPortafoglio: 18,
