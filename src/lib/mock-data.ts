@@ -150,7 +150,7 @@ export const esposizioniGeografiche: EsposizioneGeografica[] = [
     id: "stati-uniti",
     paese: "Stati Uniti",
     bandiera: "🇺🇸",
-    percentuale: 58,
+    percentuale: 55,
     regioniMappa: [{ cx: 20, cy: 20, rx: 13, ry: 9 }],
     spiegazione:
       "Sei investito negli Stati Uniti principalmente perché possiedi un ETF globale (VWCE), che riflette la composizione del mercato azionario mondiale.",
@@ -173,7 +173,7 @@ export const esposizioniGeografiche: EsposizioneGeografica[] = [
     id: "europa",
     paese: "Europa",
     bandiera: "🇪🇺",
-    percentuale: 24,
+    percentuale: 22,
     regioniMappa: [{ cx: 48, cy: 17, rx: 6, ry: 7 }],
     spiegazione:
       "L'esposizione europea arriva sia dall'ETF globale VWCE sia da un fondo dedicato alle azioni europee presente nel tuo portafoglio.",
@@ -191,7 +191,7 @@ export const esposizioniGeografiche: EsposizioneGeografica[] = [
       {
         nome: "iShares Core MSCI Europe",
         ticker: "IMEA",
-        pesoPortafoglio: 6,
+        pesoPortafoglio: 4,
         aziendePrincipali: [
           { nome: "SAP", peso: 2.8 },
           { nome: "Novo Nordisk", peso: 2.5 },
@@ -203,7 +203,7 @@ export const esposizioniGeografiche: EsposizioneGeografica[] = [
     id: "asia",
     paese: "Asia",
     bandiera: "🌏",
-    percentuale: 12,
+    percentuale: 11,
     regioniMappa: [{ cx: 74, cy: 20, rx: 11, ry: 9 }],
     spiegazione:
       "L'esposizione asiatica deriva principalmente dalla quota di Giappone e Cina inclusa nell'ETF globale VWCE.",
@@ -211,7 +211,7 @@ export const esposizioniGeografiche: EsposizioneGeografica[] = [
       {
         nome: "Vanguard FTSE All-World UCITS ETF",
         ticker: "VWCE",
-        pesoPortafoglio: 12,
+        pesoPortafoglio: 11,
         aziendePrincipali: [
           { nome: "Toyota", peso: 1.1 },
           { nome: "Tencent", peso: 0.9 },
@@ -224,7 +224,7 @@ export const esposizioniGeografiche: EsposizioneGeografica[] = [
     id: "mercati-emergenti",
     paese: "Mercati Emergenti",
     bandiera: "🌎",
-    percentuale: 6,
+    percentuale: 5,
     regioniMappa: [
       { cx: 30, cy: 38, rx: 5, ry: 7 },
       { cx: 52, cy: 35, rx: 6, ry: 8 },
@@ -236,7 +236,7 @@ export const esposizioniGeografiche: EsposizioneGeografica[] = [
       {
         nome: "iShares Core MSCI EM IMI",
         ticker: "EMIM",
-        pesoPortafoglio: 6,
+        pesoPortafoglio: 5,
         aziendePrincipali: [
           { nome: "Taiwan Semiconductor", peso: 1.6 },
           { nome: "Alibaba", peso: 0.7 },
@@ -244,6 +244,17 @@ export const esposizioniGeografiche: EsposizioneGeografica[] = [
         ],
       },
     ],
+  },
+  {
+    id: "altro",
+    paese: "Altro",
+    bandiera: "🌐",
+    percentuale: 7,
+    // nessuna regione sulla mappa: non è legato a un'area geografica specifica
+    regioniMappa: [],
+    spiegazione:
+      "Una quota residua non è legata a un singolo mercato azionario: include liquidità, oro e altri strumenti diversificativi.",
+    etf: [],
   },
 ];
 
