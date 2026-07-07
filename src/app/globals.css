@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+:root {
+  /* Patrimonio AI — palette naturale */
+  --color-forest: #1f3d2e;
+  --color-forest-dark: #142a1f;
+  --color-forest-light: #3f6350;
+  --color-forest-mist: #eef2ec;
+
+  --color-cream: #faf6ec;
+  --color-cream-dark: #efe7d4;
+
+  --color-gold: #c6a15b;
+  --color-gold-light: #e6d3a7;
+  --color-gold-dark: #a8813f;
+
+  --color-ink: #1c231d;
+  --color-muted: #7c8577;
+
+  --radius: 1.25rem;
+}
+
+@theme inline {
+  --color-forest: var(--color-forest);
+  --color-forest-dark: var(--color-forest-dark);
+  --color-forest-light: var(--color-forest-light);
+  --color-forest-mist: var(--color-forest-mist);
+
+  --color-cream: var(--color-cream);
+  --color-cream-dark: var(--color-cream-dark);
+
+  --color-gold: var(--color-gold);
+  --color-gold-light: var(--color-gold-light);
+  --color-gold-dark: var(--color-gold-dark);
+
+  --color-ink: var(--color-ink);
+  --color-muted: var(--color-muted);
+
+  --font-display: ui-serif, "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
+
+  --radius-sm: calc(var(--radius) - 0.5rem);
+  --radius-md: calc(var(--radius) - 0.25rem);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 0.5rem);
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+::selection {
+  background: var(--color-gold-light);
+  color: var(--color-forest-dark);
+}
+
+/* subtle scrollbar, kept quiet */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-cream-dark);
+  border-radius: 999px;
+}
