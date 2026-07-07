@@ -1,9 +1,22 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { patrimonioScore } from "@/lib/mock-data";
+"use client";
 
+import { ChevronRight } from "lucide-react";
+import { Progress } from "@/components/ui/progress";
+import { indicatoriScore, patrimonioScore } from "@/lib/mock-data";
+
+/**
+ * Card "Patrimonio Score" — uno degli elementi più distintivi della Home.
+ * L'intera card è cliccabile: per ora l'azione è un no-op, ma il
+ * componente è già predisposto per aprire la futura schermata di
+ * dettaglio dello score.
+ */
 export function PatrimonioScoreCard() {
-  const { punteggio, scoreMassimo, livello, descrizione, variazione } =
-    patrimonioScore;
+  function handleApriDettaglio() {
+    // TODO: quando la schermata di dettaglio sarà disponibile,
+    // sostituire con: router.push("/patrimonio/score")
+  }
+
+  const { punteggio, scoreMassimo, stato, variazione } = patrimonioScore;
 
   const raggio = 54;
   const circonferenza = 2 * Math.PI * raggio;
@@ -11,12 +24,35 @@ export function PatrimonioScoreCard() {
   const offset = circonferenza * (1 - percentuale);
 
   return (
-    <Card className="h-full">
-      <CardHeader>
-        <CardTitle>Patrimonio Score</CardTitle>
-      </CardHeader>
-      <CardContent className="flex items-center gap-6">
-        <div className="relative h-32 w-32 shrink-0">
+    <button
+      type="button"
+      onClick={handleApriDettaglio}
+      aria-label={`Apri il dettaglio del Patrimonio Score, ${punteggio} su ${scoreMassimo}, ${stato}`}
+      className="group relative w-full h-full text-left rounded-3xl border border-[var(--color-cream-dark)]/80 bg-white
+                 px-6 py-6 sm:px-7 sm:py-7
+                 shadow-[0_1px_2px_rgba(31,61,46,0.03),0_1px_1px_rgba(31,61,46,0.02)]
+                 transition-all duration-300 ease-out
+                 hover:-translate-y-0.5 hover:border-[var(--color-gold-light)]
+                 hover:shadow-[0_2px_4px_rgba(31,61,46,0.04),0_20px_40px_-16px_rgba(31,61,46,0.16)]
+                 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-gold)]
+                 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-cream)]
+                 cursor-pointer"
+    >
+      <div className="flex items-start justify-between">
+        <span className="text-sm font-medium tracking-wide text-[var(--color-muted)]">
+          Patrimonio Score
+        </span>
+
+        <ChevronRight
+          className="h-4 w-4 text-[var(--color-muted)] opacity-0 -translate-x-1 transition-all duration-300
+                     group-hover:opacity-100 group-hover:translate-x-0"
+          strokeWidth={2}
+          aria-hidden="true"
+        />
+      </div>
+
+      <div className="mt-5 flex flex-col items-center text-center">
+        <div className="relative h-36 w-36">
           <svg viewBox="0 0 128 128" className="h-full w-full -rotate-90">
             <circle
               cx="64"
@@ -40,7 +76,7 @@ export function PatrimonioScoreCard() {
             />
           </svg>
           <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <span className="font-display text-3xl text-[var(--color-forest-dark)]">
+            <span className="font-display text-4xl text-[var(--color-forest-dark)] tabular-nums">
               {punteggio}
             </span>
             <span className="text-xs text-[var(--color-muted)]">
@@ -49,14 +85,33 @@ export function PatrimonioScoreCard() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-1.5">
-          <span className="inline-flex w-fit rounded-full bg-[var(--color-forest-mist)] px-3 py-1 text-xs font-medium text-[var(--color-forest-dark)]">
-            {livello}
-          </span>
-          <p className="text-sm text-[var(--color-ink)]">{descrizione}</p>
-          <p className="text-xs text-[var(--color-gold-dark)]">{variazione}</p>
-        </div>
-      </CardContent>
-    </Card>
+        <p className="mt-4 text-base font-medium text-[var(--color-forest-dark)]">
+          {stato}
+        </p>
+        <p className="mt-1 text-sm text-[var(--color-gold-dark)]">
+          {variazione}
+        </p>
+      </div>
+
+      <div className="mt-6 flex flex-col gap-3.5">
+        {indicatoriScore.map((indicatore) => (
+          <div key={indicatore.id} className="flex flex-col gap-1.5">
+            <div className="flex items-center justify-between text-sm">
+              <span className="text-[var(--color-ink)]">
+                {indicatore.etichetta}
+              </span>
+              <span className="text-[var(--color-muted)] font-medium tabular-nums">
+                {indicatore.valore}
+              </span>
+            </div>
+            <Progress
+              value={indicatore.valore}
+              className="h-1.5"
+              indicatorClassName="bg-[var(--color-forest)]"
+            />
+          </div>
+        ))}
+      </div>
+    </button>
   );
 }
