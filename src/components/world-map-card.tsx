@@ -40,4 +40,78 @@ export function WorldMapCard() {
                  shadow-[0_1px_2px_rgba(31,61,46,0.03),0_1px_1px_rgba(31,61,46,0.02)]
                  transition-all duration-300 ease-out
                  hover:-translate-y-0.5 hover:border-[var(--color-gold-light)]
-                 hover:shadow-
+                 hover:shadow-[0_2px_4px_rgba(31,61,46,0.04),0_20px_40px_-16px_rgba(31,61,46,0.16)]
+                 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-gold)]
+                 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-cream)]
+                 cursor-pointer"
+    >
+      <div className="flex items-center justify-between">
+        <span className="flex items-center gap-1.5 text-sm font-medium tracking-wide leading-none text-[var(--color-muted)]">
+          <span className="text-base leading-none" aria-hidden="true">
+            🌍
+          </span>
+          Dove sono i tuoi soldi
+        </span>
+
+        <ChevronRight
+          className="h-4 w-4 text-[var(--color-muted)] opacity-0 -translate-x-1 transition-all duration-300
+                     group-hover:opacity-100 group-hover:translate-x-0"
+          strokeWidth={2}
+          aria-hidden="true"
+        />
+      </div>
+
+      {/* mappa stilizzata: nessuna via, nessun confine, solo macchie morbide
+          la cui intensità racconta il peso dell'esposizione */}
+      <div className="mt-4 rounded-2xl bg-[var(--color-forest-mist)] overflow-hidden aspect-[16/9]">
+        <svg viewBox="0 0 100 55" className="h-full w-full">
+          {esposizioniGeografiche.map((esposizione) =>
+            esposizione.regioniMappa.map((regione, indice) => (
+              <ellipse
+                key={`${esposizione.id}-${indice}`}
+                cx={regione.cx}
+                cy={regione.cy}
+                rx={regione.rx}
+                ry={regione.ry}
+                fill="var(--color-forest)"
+                opacity={opacitaPerPercentuale(esposizione.percentuale)}
+              />
+            ))
+          )}
+        </svg>
+      </div>
+
+      {/* esposizioni geografiche, ognuna con barra proporzionale */}
+      <div className="mt-5 flex flex-col gap-3.5">
+        {esposizioniGeografiche.map((esposizione) => (
+          <RigaEsposizione key={esposizione.id} esposizione={esposizione} />
+        ))}
+      </div>
+    </button>
+  );
+}
+
+function RigaEsposizione({
+  esposizione,
+}: {
+  esposizione: EsposizioneGeografica;
+}) {
+  return (
+    <div className="flex flex-col gap-1.5">
+      <div className="flex items-center justify-between text-sm">
+        <span className="flex items-center gap-2 text-[var(--color-ink)]">
+          <span aria-hidden="true">{esposizione.bandiera}</span>
+          {esposizione.paese}
+        </span>
+        <span className="font-medium text-[var(--color-forest-dark)] tabular-nums">
+          {esposizione.percentuale}%
+        </span>
+      </div>
+      <Progress
+        value={esposizione.percentuale}
+        className="h-1.5"
+        indicatorClassName="bg-[var(--color-forest)]"
+      />
+    </div>
+  );
+}
