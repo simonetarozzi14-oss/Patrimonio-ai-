@@ -1,13 +1,12 @@
 import { BottomNav } from "@/components/bottom-nav";
 import { ComposizioneChart } from "@/components/composizione-chart";
-import { GoalCard } from "@/components/goal-card";
 import { Header } from "@/components/header";
 import { PatrimonioChart } from "@/components/patrimonio-chart";
 import { PatrimonioScoreCard } from "@/components/patrimonio-score-card";
 import { PatrimonioTotaleCard } from "@/components/patrimonio-totale-card";
+import { SimulatoreCard } from "@/components/simulatore-card";
 import { TreeHero } from "@/components/tree-hero";
 import { WorldMapCard } from "@/components/world-map-card";
-import { obiettivi } from "@/lib/mock-data";
 
 export default function Home() {
   return (
@@ -36,11 +35,9 @@ export default function Home() {
               <WorldMapCard />
             </div>
 
-            {obiettivi.map((obiettivo) => (
-              <div key={obiettivo.id} className="md:col-span-6">
-                <GoalCard obiettivo={obiettivo} />
-              </div>
-            ))}
+            <div className="md:col-span-12">
+              <SimulatoreCard />
+            </div>
           </div>
         </div>
       </main>

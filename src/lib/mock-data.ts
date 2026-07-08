@@ -284,6 +284,33 @@ export const esposizioniGeografiche: EsposizioneGeografica[] = [
   },
 ];
 
+// --- Dati per la card "Dove puoi arrivare?" (preview del simulatore) ---
+
+export const simulazionePatrimonio = {
+  messaggio: "Continuando così...",
+  valoreProiettato: 487_000,
+  anni: 20,
+};
+
+export type PuntoProiezione = { anno: number; valore: number };
+
+function generaCurvaProiezione(): PuntoProiezione[] {
+  const { valoreProiettato, anni } = simulazionePatrimonio;
+  const valoreIniziale = patrimonioTotale.valore;
+  const rapporto = valoreProiettato / valoreIniziale;
+  const numeroPunti = 11;
+
+  return Array.from({ length: numeroPunti }, (_, i) => {
+    const anno = Math.round((i / (numeroPunti - 1)) * anni);
+    const progressione = anno / anni;
+    // crescita composta smussata: nessun rumore, solo una curva fiduciosa
+    const valore = valoreIniziale * Math.pow(rapporto, progressione);
+    return { anno, valore: Math.round(valore) };
+  });
+}
+
+export const curvaProiezionePatrimonio: PuntoProiezione[] = generaCurvaProiezione();
+
 export type Obiettivo = {
   id: string;
   titolo: string;
