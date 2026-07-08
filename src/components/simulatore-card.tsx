@@ -1,19 +1,21 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { ArrowRight } from "lucide-react";
 import { curvaProiezionePatrimonio, simulazionePatrimonio } from "@/lib/mock-data";
 import { formatCurrency } from "@/lib/utils";
 
 /**
- * Card "Dove puoi arrivare?" — preview del futuro Simulatore Patrimoniale.
- * Deve incuriosire e invogliare l'utente ad aprire il simulatore: per ora
- * mostra solo una proiezione mock, la logica reale arriverà in seguito.
- * L'intera card è cliccabile e prepara la navigazione verso "/simulatore".
+ * Card "Dove puoi arrivare?" — preview del Simulatore Patrimoniale.
+ * Deve incuriosire e invogliare l'utente ad aprirlo: mostra una proiezione
+ * mock, la logica reale del simulatore vive nella schermata "/simulatore".
+ * L'intera card è cliccabile.
  */
 export function SimulatoreCard() {
+  const router = useRouter();
+
   function handleApriSimulatore() {
-    // TODO: quando la schermata del Simulatore Patrimoniale sarà disponibile,
-    // sostituire con: router.push("/simulatore")
+    router.push("/simulatore");
   }
 
   const valori = curvaProiezionePatrimonio.map((p) => p.valore);

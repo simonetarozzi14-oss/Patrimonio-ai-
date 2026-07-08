@@ -1,0 +1,22 @@
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
+
+export function SimulatoreHeader() {
+  return (
+    <header className="flex flex-col gap-3">
+      <Link
+        href="/"
+        className="flex items-center gap-2 text-sm text-[var(--color-muted)] hover:text-[var(--color-forest-dark)] transition-colors w-fit"
+      >
+        <ArrowLeft className="h-4 w-4" strokeWidth={2} />
+        <span className="font-display text-xl sm:text-2xl text-[var(--color-forest-dark)]">
+          Dove puoi arrivare?
+        </span>
+      </Link>
+      <p className="text-sm text-[var(--color-muted)] max-w-md">
+        Scopri come il tuo patrimonio potrebbe crescere continuando a
+        investire.
+      </p>
+    </header>
+  );
+}

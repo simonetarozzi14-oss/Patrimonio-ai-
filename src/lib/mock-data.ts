@@ -311,6 +311,50 @@ function generaCurvaProiezione(): PuntoProiezione[] {
 
 export const curvaProiezionePatrimonio: PuntoProiezione[] = generaCurvaProiezione();
 
+// --- Dati per la schermata "Dove puoi arrivare?" (Simulatore Patrimoniale) ---
+// Solo gli input di partenza sono mock: la formula di crescita è reale
+// (src/lib/simulatore.ts), pronta per essere alimentata con dati veri.
+
+export const simulatoreParametriDefault = {
+  patrimonioAttuale: patrimonioTotale.valore,
+  pacMensile: 500,
+  orizzonteAnni: 20,
+  rendimentoPersonalizzato: 8, // %
+};
+
+export const opzioniOrizzonte = [5, 10, 15, 20, 30] as const;
+
+export type ScenarioPatrimonioAI = {
+  id: string;
+  nome: string;
+  emoji: string;
+  rendimento: number; // % annuo
+  colore: string;
+};
+
+export const scenariPatrimonioAI: ScenarioPatrimonioAI[] = [
+  {
+    id: "prudente",
+    nome: "Scenario Prudente",
+    emoji: "🟢",
+    rendimento: 4,
+    colore: "#3f6350",
+  },
+  {
+    id: "bilanciato",
+    nome: "Scenario Bilanciato",
+    emoji: "🟡",
+    rendimento: 7,
+    colore: "#c6a15b",
+  },
+];
+
+export const osservazionePatrimonioAI =
+  "Anche piccoli aumenti del PAC mensile possono avere un impatto significativo nel lungo periodo grazie all'interesse composto.";
+
+export const disclaimerSimulatore =
+  "Questa simulazione è puramente indicativa e non rappresenta una previsione dei rendimenti futuri.";
+
 export type Obiettivo = {
   id: string;
   titolo: string;
