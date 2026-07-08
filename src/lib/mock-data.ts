@@ -391,8 +391,6 @@ export type VoceNavigazione = {
 
 export const navigazione: VoceNavigazione[] = [
   { id: "home", etichetta: "Home", href: "/" },
-  { id: "analisi", etichetta: "Analisi", href: "/analisi" },
-  { id: "mappa", etichetta: "Mappa", href: "/mappa" },
-  { id: "futuro", etichetta: "Futuro", href: "/futuro" },
+  { id: "aggiungi", etichetta: "Aggiungi", href: "/aggiungi" },
   { id: "profilo", etichetta: "Profilo", href: "/profilo" },
 ];
