@@ -35,14 +35,15 @@ export const andamentoPatrimonio: PuntoAndamento[] = [
 // --- Storico giornaliero (mock) per il grafico interattivo del patrimonio ---
 // Generato con una formula deterministica (nessun Math.random) in modo che
 // il valore sia identico tra server e client e non provochi mismatch di
-// idratazione in Next.js. Copre 2 anni, ancorato all'ultimo valore reale
-// mostrato nelle altre card.
+// idratazione in Next.js. Copre 5 anni, ancorato all'ultimo valore reale
+// mostrato nelle altre card (serve profondità sufficiente per il periodo "5A"
+// nella schermata di dettaglio del Patrimonio Totale).
 export type PuntoStorico = { data: string; valore: number };
 
 const UN_GIORNO_MS = 24 * 60 * 60 * 1000;
 const OGGI_MOCK = new Date("2026-07-07T00:00:00");
-const GIORNI_STORICO = 730; // ~2 anni
-const VALORE_INIZIALE_STORICO = 246_000;
+const GIORNI_STORICO = 1825; // ~5 anni
+const VALORE_INIZIALE_STORICO = 198_000;
 
 function generaSerieStoricaPatrimonio(): PuntoStorico[] {
   const punti: PuntoStorico[] = [];
@@ -74,6 +75,31 @@ function generaSerieStoricaPatrimonio(): PuntoStorico[] {
 }
 
 export const serieStoricaPatrimonio = generaSerieStoricaPatrimonio();
+
+// --- Dati per la schermata di dettaglio "Patrimonio Totale" ---
+
+const TOTALE_VERSATO = 265_000;
+
+export const riepilogoPatrimonio = {
+  valoreAttuale: patrimonioTotale.valore,
+  totaleVersato: TOTALE_VERSATO,
+  rendimentoAssoluto: patrimonioTotale.valore - TOTALE_VERSATO,
+  rendimentoPercentuale:
+    ((patrimonioTotale.valore - TOTALE_VERSATO) / TOTALE_VERSATO) * 100,
+};
+
+export type AggiornamentoPatrimonio = {
+  id: string;
+  data: string;
+  fonte: string;
+  tipo: "screenshot" | "manuale";
+};
+
+export const cronologiaAggiornamenti: AggiornamentoPatrimonio[] = [
+  { id: "1", data: "15 giugno", fonte: "Screenshot Fineco", tipo: "screenshot" },
+  { id: "2", data: "30 maggio", fonte: "Inserimento manuale", tipo: "manuale" },
+  { id: "3", data: "28 aprile", fonte: "Screenshot Directa", tipo: "screenshot" },
+];
 
 export const patrimonioScore = {
   punteggio: 87,

@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { ChevronRight } from "lucide-react";
 import { andamentoPatrimonio, patrimonioTotale } from "@/lib/mock-data";
 import {
@@ -10,14 +11,14 @@ import {
 
 /**
  * Card "Patrimonio Totale" — la card più importante della Home dopo
- * l'albero. È interamente cliccabile: per ora l'azione è un no-op,
- * ma il componente è già predisposto per aprire la futura schermata
- * di dettaglio "Patrimonio".
+ * l'albero. È interamente cliccabile e apre la schermata di dettaglio
+ * "Patrimonio" (Sprint 2.0).
  */
 export function PatrimonioTotaleCard() {
+  const router = useRouter();
+
   function handleApriDettaglio() {
-    // TODO: quando la schermata di dettaglio sarà disponibile,
-    // sostituire con: router.push("/patrimonio")
+    router.push("/patrimonio");
   }
 
   const valori = andamentoPatrimonio.map((p) => p.valore);

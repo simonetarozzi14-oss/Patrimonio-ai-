@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import {
   Area,
   AreaChart,
@@ -84,11 +85,11 @@ function TooltipPersonalizzato({
  * schermata di dettaglio "Patrimonio".
  */
 export function PatrimonioChart() {
+  const router = useRouter();
   const [periodo, setPeriodo] = useState<Periodo>("1A");
 
   function handleApriDettaglio() {
-    // TODO: quando la schermata di dettaglio sarà disponibile,
-    // sostituire con: router.push("/patrimonio")
+    router.push("/patrimonio");
   }
 
   const datiFiltrati = useMemo(() => {
