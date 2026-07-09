@@ -394,3 +394,26 @@ export const navigazione: VoceNavigazione[] = [
   { id: "aggiungi", etichetta: "Aggiungi", href: "/aggiungi" },
   { id: "profilo", etichetta: "Profilo", href: "/profilo" },
 ];
+
+// --- Opzioni della pagina "Aggiungi" ---
+// Solo "ETF / Azione" porta a una schermata reale per ora; le altre sono
+// visibili ma ancora in preparazione (href assente = non ancora attiva).
+export type OpzioneAggiungi = {
+  id: string;
+  etichetta: string;
+  emoji: string;
+  href?: string;
+};
+
+export const opzioniAggiungi: OpzioneAggiungi[] = [
+  { id: "screenshot", etichetta: "Importa screenshot", emoji: "📷" },
+  {
+    id: "etf-azione",
+    etichetta: "ETF / Azione",
+    emoji: "📈",
+    href: "/aggiungi/etf-azione",
+  },
+  { id: "liquidita", etichetta: "Liquidità", emoji: "💶" },
+  { id: "fondo-pensione", etichetta: "Fondo pensione", emoji: "🏦" },
+  { id: "manuale", etichetta: "Inserimento manuale", emoji: "📝" },
+];
