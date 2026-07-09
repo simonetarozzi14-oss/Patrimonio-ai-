@@ -1,26 +1,20 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { ChevronRight } from "lucide-react";
-import { Progress } from "@/components/ui/progress";
 import { esposizioniGeografiche, type EsposizioneGeografica } from "@/lib/mock-data";
+import { Progress } from "@/components/ui/progress";
 
 /**
  * Card "Dove sono i tuoi soldi" — preview della distribuzione geografica
- * del patrimonio. L'intera card è cliccabile: per ora l'azione è un no-op,
- * ma è già predisposta per aprire la futura schermata "Mappa", dove il
- * flusso previsto è:
- *
- *   Home → Dove sono i tuoi soldi → selezione Paese →
- *   ETF che investono in quel Paese → aziende principali negli ETF →
- *   spiegazione in linguaggio semplice del perché si è investiti lì.
- *
- * I dati mock in `esposizioniGeografiche` contengono già la struttura
- * (etf, aziende, spiegazione) necessaria per quelle schermate future.
+ * del patrimonio. L'intera card è cliccabile e apre la schermata
+ * "Distribuzione geografica" (/mappa).
  */
 export function WorldMapCard() {
+  const router = useRouter();
+
   function handleApriMappa() {
-    // TODO: quando la schermata "Mappa" sarà disponibile,
-    // sostituire con: router.push("/mappa")
+    router.push("/mappa");
   }
 
   // Calcola l'intensità del colore di ogni "macchia" sulla mappa in base
